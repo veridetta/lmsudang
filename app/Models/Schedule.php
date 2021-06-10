@@ -10,7 +10,7 @@ class Schedule extends Model
     use HasFactory;
     public function grade()
     {
-        return $this->belongsTo(Grade::class, 'grade_id');
+        return $this->belongsTo(Grade::class, 'grade_code','code');
     }
     public function teacher()
     {
@@ -18,6 +18,6 @@ class Schedule extends Model
     }
     public function academic()
     {
-        return $this->belongsTo(Academic::class, 'academic_id');
+        return $this->belongsTo(Academic::class, 'academic_code','code');
     }
 }

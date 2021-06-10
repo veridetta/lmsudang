@@ -18,15 +18,17 @@ class TeacherPageController extends Controller
     function loginCheck(Request $request){
         $nip=$request->nip;
         $teacher=Teacher::where('nip','=',$request->nip)->first();
-        if($teacher->count()>0){
+        if($teacher){
             //Auth::attempt($teacher);
             Session::put('nip', $nip);
             Session::put('id', $teacher->id);
             Session::put('name', $teacher->name);
+            return redirect()->route('teacher.dashboard');
+        }else{
+            return view('teacher/auth/login') ->withErrors(['Periksa kembali NIP anda']);
         }
         
         //Auth::guard('teacher')->attempt($teacher);
-        return view('teacher/dashboard');
     }
     function dashboard(){
         if(Session::get('nip')==""){

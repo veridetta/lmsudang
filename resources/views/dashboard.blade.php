@@ -46,8 +46,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {!! $schedules ?? ''->links() !!}
                     </div>
+                    {!! $schedules ?? ''->links() !!}
                 </div>
             </div>
         </div>

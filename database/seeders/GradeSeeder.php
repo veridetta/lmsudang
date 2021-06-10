@@ -14,9 +14,11 @@ class GradeSeeder extends Seeder
     public function run()
     {
         $mapel = array("X IPA 1","X IPA 2","X IPA 3","XI IPA 1","XI IPA 2","XII IPA 1","XII IPA 2","XII IPA 3");
+        $code=array("XIPA1","XIPA2","XIPA3","XIIPA1","XIIPA2","XIIPA3","XIIIPA1","XIIIPA2","XIIIPA3");
         for($i=0;$i<count($mapel);$i++){
             \DB::table('grades')->insert([
-                'name'=>$mapel[$i]
+                'name'=>$mapel[$i],
+                'code'=>$code[$i]
             ]);
         };
     }

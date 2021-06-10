@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->String('name');
-            $table->Integer('class_id');
+            $table->string('grade_code')->references('code')->on('grade');;
             $table->String('nis');
             $table->String('address');
             $table->String('hp');

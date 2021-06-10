@@ -1,7 +1,5 @@
-@auth()
+@if(Session::get('nip'))
     @include('teacher.layouts.navbars.navs.auth')
-@endauth
-    
-@guest()
+@else
     @include('teacher.layouts.navbars.navs.guest')
-@endguest
+@endif

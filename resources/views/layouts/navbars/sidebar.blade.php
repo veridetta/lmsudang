@@ -97,7 +97,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link" href="{{ route('admin_teacher.index') }}">
                                     {{ __('Pengajar') }}
                                 </a>
                             </li>

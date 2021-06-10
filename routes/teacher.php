@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware' => 'teacher'], function () {
-    Route::get('/', 'App\Http\Controllers\TeacherPageController@login')->name('login');
+    Route::get('/', 'App\Http\Controllers\TeacherPageController@login')->name('teacher.login');
     Route::post('/', 'App\Http\Controllers\TeacherPageController@loginCheck')->name('loginCheck');
-    Route::get('/dashboard', 'App\Http\Controllers\TeacherPageController@dashboard')->name('dashboard');
+    Route::get('/dashboard', 'App\Http\Controllers\TeacherPageController@dashboard')->name('teacher.dashboard');
     Route::post('/startAttendance', 'App\Http\Controllers\TeacherPageController@startAttendance')->name('teacher.startAttendance');
+    Route::get('/sc/all', 'App\Http\Controllers\TeacherPageControllerAjax@getScAll')->name('getScAll');
 });

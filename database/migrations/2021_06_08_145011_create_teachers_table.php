@@ -17,7 +17,7 @@ class CreateTeachersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->String('name');
-            $table->Integer('lesson_id');
+            $table->string('academic_code')->references('code')->on('academic');;
             $table->String('nip');
             $table->String('address');
             $table->String('hp');

@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $students=student::all();
         $day=Carbon::now()->format('l');
-        $schedules = Schedule::where('day','=',$day)->latest()->paginate(5);
+        $schedules = Schedule::where('day','=',$day)->latest()->simplePaginate(5);
         return view('dashboard',['schedules'=>$schedules,'students'=>$students,'countStudents'=>student::count(),'countTeachers'=>Teacher::count(),'countAcademics'=>Academic::count(),'countGrades'=>Grade::count()])->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function tes(){

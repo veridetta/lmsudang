@@ -34,5 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+	Route::resource('admin_teacher', 'App\Http\Controllers\TeacherController');
+	Route::get('admin/teacher/all', 'App\Http\Controllers\TeacherController@getAll')->name('admin_teacher.getAll');
+	Route::get('admin/teacher/change/{id}', 'App\Http\Controllers\TeacherController@edit')->name('admin_teacher.change');
+	
 });
 

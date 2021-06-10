@@ -73,35 +73,21 @@
         </div>
         <div class="row collapse mb-4" id="collapseSchedule">
             <div class="col-xl-12 mt-2 mb-xl-0">
-                <div class="card ">
-                <div class="table-responsive " >
-                        <table class="table align-items-center table-flush">
+                <div class="card containter">
+                <div class="table-responsive card-body" >
+                        <table class="table align-items-center table-flush sc_all w-100">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Kelas</th>
                                     <th scope="col">Mapel</th>
-                                    <th scope="col">Pengajar</th>
-                                    <th scope="col">Waktu</th>
                                     <th scope="col">Hari</th>
+                                    <th scope="col">Mulai</th>
+                                    <th scope="col">Selesai</th>
+                                    <th scope="col">Pengajar</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            <?php $o=1;?>
-                            @foreach($sc_alls as $sc_all)
-                                <tr>
-                                   <td>{{$o}}</td>
-                                   <td>{{$sc_all->grade->name}}</td>
-                                   <td>{{$sc_all->academic->name}}</td>
-                                   <td>{{$sc_all->teacher->name}}</td>
-                                   <td>{{$sc_all->start}} - {{$sc->end}}</td>
-                                   <td><span class="badge badge-pill badge-danger">{{$sc->day}}</span></td>
-                                </tr>
-                                <?php $o++;?>
-                                @endforeach
-                            </tbody>
                         </table>
-                        {!! $sc_alls ?? ''->links() !!}
                     </div>
                 </div>
             </div>
@@ -109,3 +95,37 @@
     </tes>
 </div>
 @endsection
+@push('js')
+<script type="text/javascript">
+  $(function () {
+    var table = $('.sc_all').DataTable({
+        processing: true,
+        serverSide: true, 
+        dom: 'Bfrtip',
+        language: {
+                buttons: {
+                    colvis : 'show / hide', // label button show / hide
+                    colvisRestore: "Reset Kolom" //lael untuk reset kolom ke default
+                }
+        },
+        buttons: [
+            {extend:'copyHtml5',title: 'Salinan Jadwal'},
+            {extend:'excelHtml5',title: 'File Excel Jadwal'},
+            {extend:'csvHtml5',title: 'File CSV Jadwal'},
+            {extend:'pdfHtml5',title: 'File Pdf Jadwal'},
+        ],
+        ajax: "{{ route('getScAll') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+            {data: 'grade.name', name: 'grade.name'},
+            {data: 'academic.name', name: 'academic.name'},
+            {data: 'day', name: 'day'},
+            {data: 'start', name: 'start'},
+            {data: 'end', name: 'end'},
+            {data: 'teacher.name', name: 'teacher.name'},
+        ]
+    });
+    
+  });
+</script>
+@endpush

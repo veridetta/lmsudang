@@ -17,6 +17,7 @@ class CreateAcademicsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->String('name');
+            $table->String('code')->unique();
         });
     }
 
