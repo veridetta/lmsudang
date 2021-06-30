@@ -13,7 +13,7 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        $faker=Faker::create('id_ID');
+        /*$faker=Faker::create('id_ID');
         $grade=array("XIPA1","XIPA2","XIPA3","XIIPA1","XIIPA2","XIIPA3","XIIIPA1","XIIIPA2","XIIIPA3");
         for($i=0;$i<120;$i++){
             $kg = array_rand($grade);
@@ -25,5 +25,7 @@ class StudentSeeder extends Seeder
                 'hp'=>$faker->phoneNumber
             ]);
         };
+        */
+        \App\Models\student::factory(1000)->create();
     }
 }

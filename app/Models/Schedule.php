@@ -14,7 +14,11 @@ class Schedule extends Model
     }
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'teacher_id');
+        return $this->belongsTo(Teacher::class, 'teacher_nip','nip');
+    }
+    public function student()
+    {
+        return $this->belongsTo(student::class, 'grade_code','grade_code');
     }
     public function academic()
     {

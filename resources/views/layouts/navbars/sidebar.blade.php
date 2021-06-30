@@ -86,13 +86,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#navbar-pengguna" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-pengguna">
                         <i class="fa fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Pengguna') }}</span>
+                        <span class="nav-link-text">{{ __('Manajemen Data') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-pengguna">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <a class="nav-link" href="{{ route('admin_academic.index') }}">
+                                    {{ __('Mata Pelajaran') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin_grade.index') }}">
+                                    {{ __('Kelas') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin_staff.index') }}">
                                     {{ __('Staff') }}
                                 </a>
                             </li>
@@ -102,7 +112,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link" href="{{ route('admin_student.index') }}">
                                     {{ __('Siswa') }}
                                 </a>
                             </li>
@@ -110,9 +120,24 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('icons') }}">
-                        <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Jadwal') }}
+                    <a class="nav-link" href="#navbar-jadwal" data-toggle="collapse" role="button" aria-controls="navbar-jadwal">
+                        <i class="ni ni-calendar-grid-58 text-blue"></i>
+                        <span class="nav-link-text">{{ __('Jadwal') }}</span>
                     </a>
+                    <div class="collapse" id="navbar-jadwal">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin_schedule.today') }}">
+                                    {{ __('Hari Ini') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin_schedule.index') }}">
+                                    {{ __('Semua') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('map') }}">

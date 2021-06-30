@@ -26,7 +26,7 @@
                         <div class="col-lg-12 margin-tb">
                             <div class="float-right">
                                 <a class="btn btn-success btn-sm" href="{{ route('admin_teacher.create') }}">Tambah Pengajar</a>
-                                <a class="btn btn-primary btn-sm btn-import" href="#">Import Pengajar</a>
+                                <a class="btn btn-primary btn-sm btn-import" href="{{route('admin_teacher.import')}}">Import Pengajar</a>
                             </div>
                         </div>
                     </div>

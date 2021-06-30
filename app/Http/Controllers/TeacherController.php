@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\student;
 use App\Models\Teacher;
+use Session;
 use App\Models\Teacher as admin_teacher;
 use App\Models\Grade;
 use App\Models\Schedule;
@@ -11,6 +12,9 @@ use App\Models\Academic;
 use Illuminate\Http\Request;
 use DataTables;
 Use Exception;
+use App\Imports\TeacherImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Storage;
 
 class TeacherController extends Controller
 {
@@ -160,5 +164,65 @@ class TeacherController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+    }
+    function import(){
+        return view('admin_teacher.import');
+    }
+    function importStore(Request $request){
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_teacher',$nama_file);
+
+        // import data
+        Excel::import(new TeacherImport, public_path('/file_teacher/'.$nama_file));
+
+        // notifikasi dengan session
+        Session::flash('sukses','Data Pengajar Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect('admin/teacher/import');
+    }
+    function importJson(Request $request){
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_teacher',$nama_file);
+
+        // import data
+        Excel::import(new TeacherImport, public_path('/file_teacher/'.$nama_file));
+
+        // notifikasi dengan session
+        Session::flash('sukses','Data Pengajar Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return response()->json(['success' => true]);
+    }
+    function ExampleExcel(){
+        //return response()->download(storage_path('/app/example/import-teacher.xlsx'));
+        //Storage::disk('public')->download('example/', 'import-teacher.xlsx');
+        $myFile = public_path("import-teacher.xlsx");
+        $headers = ['Content-Type: application/xlsx'];
+        $newName = 'import-teacher'.time().'.xlsx';
+
+        return response()->download($myFile, $newName, $headers);
     }
 }

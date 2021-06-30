@@ -20,8 +20,8 @@ class CreateAttendancesTable extends Migration
             $table->Integer('user_id');
             $table->Integer('lesson_id');
             $table->timestamp('date')->nullable();
-            $table->timestamp('in')->nullable();
-            $table->timestamp('out')->nullable();
+            $table->time('in')->nullable();
+            $table->time('out')->nullable();
             $table->String('status');
         });
     }

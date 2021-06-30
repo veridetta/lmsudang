@@ -21,5 +21,6 @@ class GradeSeeder extends Seeder
                 'code'=>$code[$i]
             ]);
         };
+        //\App\Models\Grade::factory(6)->create();
     }
 }

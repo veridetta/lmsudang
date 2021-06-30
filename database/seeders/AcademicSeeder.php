@@ -21,5 +21,7 @@ class AcademicSeeder extends Seeder
                 'code'=>$code[$i]
             ]);
         };
+        
+        //\App\Models\Academic::factory(10)->create();
     }
 }

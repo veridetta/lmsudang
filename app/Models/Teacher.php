@@ -19,4 +19,8 @@ class Teacher extends Model
     {
         return $this->belongsTo(Academic::class, 'academic_code','code');
     }
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }
